@@ -6,3 +6,6 @@
 
 [node name="PropBarrel" parent="." instance=ExtResource("1_ge7sn")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.382168, 0, 1.26665)
+
+[node name="PropBarrel2" parent="." instance=ExtResource("1_ge7sn")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.382168, 0, 2.26665)
