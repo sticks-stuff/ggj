@@ -15,3 +15,9 @@ func _input(event):
 			print("draw line between:", last_position, event.position)
 		last_position = event.position;
 		last_button_mask = event.button_mask;
+
+func _draw():
+	draw_rect(Rect2(0, 0, 100, 100), Color.RED)
+
+func _process(delta):
+	queue_redraw()
