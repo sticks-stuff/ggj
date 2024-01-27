@@ -1,6 +1,6 @@
 extends Control
 
-@onready var canvas = $Canvas;
+@onready var canvas = get_node("Canvas");
 @onready var colorPickerButton = $ColorPickerButton
 @export var pixel_size = Vector2i(10, 10);
 
