@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bxd7ae7230am8"]
 
-[ext_resource type="Script" path="res://player_draw_pane.gd" id="1_x03nr"]
+[ext_resource type="Script" path="res://scripts/player_draw_pane.gd" id="1_x03nr"]
 
 [node name="PlayerDrawPane" type="Control"]
 layout_mode = 3
