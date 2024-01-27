@@ -28,7 +28,7 @@ func _physics_process(delta):
 	
 	# Moving the Character
 	velocity = target_velocity
-	# move_and_slide()
+	move_and_slide()
 
 #### FIRE
 var bullet_scene = preload("res://scenes/player/bullet.tscn")
@@ -37,3 +37,7 @@ func _input(event):
 	if event.is_action_pressed("fire"):
 		var bullet_instance = bullet_scene.instantiate()
 		get_parent().add_child(bullet_instance)
+
+
+func _on_area_3d_area_entered(area):
+	pass # Replace with function body.
