@@ -64,6 +64,8 @@ func daa(x1, y1, x2, y2) -> Array[Vector2]:
 
 func draw_pixel_fill(mouse_pos, color) -> void:
 	var init_pos = mouse_to_pixel_pos(mouse_pos)
+	if init_pos.x < 0 or init_pos.x >= width or init_pos.y < 0 or init_pos.y >= height:
+		return
 	var init_color = pixels[init_pos.y][init_pos.x] # color to be replaced
 	if init_color == color:
 		return
