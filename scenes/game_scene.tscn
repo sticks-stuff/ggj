@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://mdqhu3ye45uf"]
+[gd_scene load_steps=6 format=3 uid="uid://mdqhu3ye45uf"]
 
 [ext_resource type="PackedScene" uid="uid://bkjch3s5fkght" path="res://scenes/player.tscn" id="1_4jftv"]
 [ext_resource type="PackedScene" uid="uid://ba5besi6d37jq" path="res://environment_objects/environment_node.tscn" id="3_l67jm"]
 [ext_resource type="PackedScene" uid="uid://cs4wav8lh44bu" path="res://scenes/boss/boss.tscn" id="3_n1xjb"]
+[ext_resource type="PackedScene" uid="uid://bhuqbh0txd8de" path="res://scenes/boss/attack_1.tscn" id="4_assip"]
 
 [sub_resource type="Environment" id="Environment_f5yaj"]
 background_mode = 1
@@ -35,3 +36,6 @@ sky_mode = 1
 
 [node name="BossBody" parent="." instance=ExtResource("3_n1xjb")]
 transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="Attack1" parent="." instance=ExtResource("4_assip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66809, 1.05876, 2.58762)

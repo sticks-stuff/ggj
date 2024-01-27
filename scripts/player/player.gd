@@ -38,7 +38,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 #### FIRE
-var bullet_scene = preload("res://scenes/player/bullet.tscn")
+var bullet_scene = preload("res://scenes/player/player_bullet.tscn")
 
 func _input(event):
 	if event.is_action_pressed("fire"):
