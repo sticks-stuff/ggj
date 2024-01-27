@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://tcu8hc3q2u4f"]
+
+[ext_resource type="Texture2D" uid="uid://c2perj03fupru" path="res://sprites/ui_pencil.png" id="1_sdb3v"]
+[ext_resource type="Texture2D" uid="uid://chkrnrsoa6sk" path="res://sprites/ui_paintbucket.png" id="2_uo7qq"]
+
+[node name="CheckButton" type="TextureButton"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -488.0
+offset_top = -355.0
+offset_right = -379.999
+offset_bottom = -128.999
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+texture_normal = ExtResource("1_sdb3v")
+texture_pressed = ExtResource("2_uo7qq")
