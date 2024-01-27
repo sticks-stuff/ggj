@@ -1,8 +1,8 @@
 extends ColorRect
 
-
-var width = 50
-var height = 50
+@export var canvas_size = Vector2i(50, 50)
+var width = canvas_size.x
+var height = canvas_size.y
 var pixels = []
 var pixel_height = get_size().y / width
 var pixel_width = get_size().x / height

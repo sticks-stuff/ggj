@@ -24,6 +24,7 @@ offset_top = 50.0
 offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -77,14 +78,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -486.0
-offset_top = -349.0
-offset_right = -374.0
-offset_bottom = -237.0
+offset_left = -493.0
+offset_top = -120.0
+offset_right = -381.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Colour picker"
-color = Color(1, 0, 0, 1)
+color = Color(0.788235, 0.333333, 0.694118, 1)
 
 [node name="Border" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -113,10 +114,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -670.0
-offset_top = -211.0
-offset_right = -551.0
-offset_bottom = -180.0
+offset_left = -677.0
+offset_top = 18.0
+offset_right = -558.0
+offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.5, 2.5)
@@ -142,3 +143,18 @@ theme_override_fonts/normal_font = ExtResource("4_wyn2s")
 theme_override_font_sizes/normal_font_size = 40
 text = "Draw something silly :P"
 fit_content = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 384.0
+offset_top = 273.0
+offset_right = 606.0
+offset_bottom = 344.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start!"
