@@ -3,10 +3,15 @@ extends Control
 @onready var canvas = $Canvas;
 @export var pixel_size = Vector2i(10, 10);
 
+var last_button_mask = 0;
+var last_position = Vector2(0,0);
+
 func _ready():
 	pass
 
 func _input(event):
 	if is_instance_of(event, InputEventMouse):
-		var mouse_pos: Vector2 = event.position;
-		print(mouse_pos);
+		if last_button_mask == 1 and event.button_mask == 1:
+			print("draw line between:", last_position, event.position)
+		last_position = event.position;
+		last_button_mask = event.button_mask;
