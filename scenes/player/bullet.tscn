@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cavnppji440lr"]
+[gd_scene load_steps=4 format=3 uid="uid://t5cyx8o6p6q0"]
 
 [ext_resource type="Texture2D" uid="uid://mgakf4cclyfx" path="res://sprites/ui_Circle.png" id="1_6euyk"]
-[ext_resource type="Script" path="res://scenes/player/player_bullet.gd" id="1_7wxvu"]
+[ext_resource type="Script" path="res://scripts/player/player_bullet.gd" id="1_hgmpr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5iyf8"]
 
 [node name="Bullet" type="CharacterBody3D"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
-script = ExtResource("1_7wxvu")
+script = ExtResource("1_hgmpr")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(-1, -1.50996e-07, 6.60024e-15, 0, -4.37114e-08, -1, 1.50996e-07, -1, 4.37114e-08, 0, 0, 0)
@@ -16,3 +16,8 @@ texture = ExtResource("1_6euyk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.99585, 0.128821, 0, -0.128821, 1.99585, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("SphereShape3D_5iyf8")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1.61233, 0, 0, 0, 1, 0, 0, 0, 1.74602, 0, 0, 0)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
