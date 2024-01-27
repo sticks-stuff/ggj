@@ -14,6 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x03nr")
+drawMode = null
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
@@ -144,7 +145,7 @@ theme_override_font_sizes/normal_font_size = 40
 text = "Draw something silly :P"
 fit_content = true
 
-[node name="Button" type="Button" parent="."]
+[node name="NextButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
