@@ -15,7 +15,7 @@ func _ready():
 		for x in range(height):
 			line.append(null)
 		pixels.append(line)
-	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	queue_redraw()
@@ -33,17 +33,28 @@ func _draw():
 		line_num += 1
 
 func draw_pixel_line(mouse_pos1, mouse_pos2, color):
-	var pos1 =  Vector2((mouse_pos1.x - self.position.x) / pixel_width, (mouse_pos1.y - self.position.y) / pixel_height)
-	var pos2 =  Vector2((mouse_pos2.x - self.position.x) / pixel_width, (mouse_pos2.y - self.position.y) / pixel_height)
-	# https://en.wikipedia.org/wiki/Line_drawing_algorithm#:~:text=A%20naive%20line%2Ddrawing%20algorithm%5Bedit%5D
-	var dx = pos2.x - pos1.x
-	var dy = pos2.y - pos1.y
-	if dx == 0:
-		# Vertical line
-		for y in range(min(pos1.y, pos2.y), max(pos1.y, pos2.y)):
-			pixels[y][pos1.x] = color
-	else:
-		# Non-vertical line
-		for x in range(min(pos1.x, pos2.x), max(pos2.x, pos1.x)):
-			var y = pos1.y + dy * (x - pos1.x) / dx    
-			pixels[y][x] = color
+	var pos1 = Vector2((mouse_pos1.x - self.position.x) / pixel_width, (mouse_pos1.y - self.position.y) / pixel_height).floor()
+	var pos2 = Vector2((mouse_pos2.x - self.position.x) / pixel_width, (mouse_pos2.y - self.position.y) / pixel_height).floor()
+	
+	# If mouse out of bounds, ignore.
+	if pos1.x < 0 or pos1.x >= width or pos1.y < 0 or pos1.y >= height or pos2.x < 0 or pos2.x > width or pos2.y < 0 or pos2.y >= height:
+		return
+	
+	for point in daa(pos1.x, pos1.y, pos2.x, pos2.y):
+		pixels[point.y][point.x] = color
+
+# Digital Differential Analyzer Line Drawing Algorithm
+func daa(x1, y1, x2, y2):
+	var dx = x2 - x1
+	var dy = y2 - y1
+	var steps = max(abs(dx), abs(dy))
+	var Xinc = dx / float(steps)
+	var Yinc = dy / float(steps)
+	var X = x1
+	var Y = y1
+	var points = []
+	for i in range(steps+1):
+		points.append(Vector2(round(X), round(Y)))
+		X += Xinc
+		Y += Yinc
+	return points
