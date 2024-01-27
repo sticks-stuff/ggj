@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxd7ae7230am8"]
+[gd_scene load_steps=11 format=3 uid="uid://bxd7ae7230am8"]
 
 [ext_resource type="Script" path="res://scripts/player_draw_pane.gd" id="1_x03nr"]
 [ext_resource type="Texture2D" uid="uid://byg863pw0abrd" path="res://sprites/ui_checkerboard.png" id="2_fe00l"]
 [ext_resource type="Script" path="res://scripts/canvas.gd" id="2_ktsmk"]
+[ext_resource type="Texture2D" uid="uid://c2fgwrb7pyjp8" path="res://sprites/ui_innershadow.png" id="2_sd2df"]
 [ext_resource type="Texture2D" uid="uid://4wa8rna2si7t" path="res://sprites/ui_border_black.png" id="3_4r22p"]
 [ext_resource type="FontFile" uid="uid://dquaatdvcdp6o" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="4_wyn2s"]
 [ext_resource type="Texture2D" uid="uid://c2perj03fupru" path="res://sprites/ui_pencil.png" id="6_b7a1i"]
@@ -46,7 +47,26 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.203922, 0.137255, 0.137255, 1)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Border2" type="NinePatchRect" parent="."]
+modulate = Color(1, 1, 1, 0.239216)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 0.5)
+texture = ExtResource("2_sd2df")
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+
+[node name="Checkerboard" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
