@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_6yaaf"]
 [ext_resource type="Texture2D" uid="uid://daw7qmtiwblwh" path="res://icon.svg" id="1_7n5l1"]
-[ext_resource type="PackedScene" uid="uid://bxd7ae7230am8" path="res://player_draw_pane.tscn" id="3_y4r1h"]
+[ext_resource type="PackedScene" uid="uid://bxd7ae7230am8" path="res://scenes/player_draw_pane.tscn" id="3_y4r1h"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4ax3u"]
 
