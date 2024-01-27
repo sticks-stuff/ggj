@@ -20,7 +20,7 @@ func _ready():
 func _process(delta):
 	queue_redraw()
 
-func _draw():
+func _draw() -> void:
 	var line_num = 0
 	for line in pixels:
 		var pixel_num = 0
@@ -31,7 +31,7 @@ func _draw():
 			pixel_num += 1
 		line_num += 1
 
-func draw_pixel_line(mouse_pos1, mouse_pos2, color):
+func draw_pixel_line(mouse_pos1, mouse_pos2, color) -> void:
 	var pos1 = mouse_to_pixel_pos(mouse_pos1)
 	var pos2 = mouse_to_pixel_pos(mouse_pos2)
 	
@@ -43,11 +43,11 @@ func draw_pixel_line(mouse_pos1, mouse_pos2, color):
 	for point in daa(pos1.x, pos1.y, pos2.x, pos2.y):
 		pixels[point.y][point.x] = color
 
-func mouse_to_pixel_pos(mouse_pos):
+func mouse_to_pixel_pos(mouse_pos) -> Vector2:
 	return Vector2((mouse_pos.x - self.position.x) / pixel_width, (mouse_pos.y - self.position.y) / pixel_height).floor()
 
 # Digital Differential Analyzer Line Drawing Algorithm
-func daa(x1, y1, x2, y2):
+func daa(x1, y1, x2, y2) -> Array[Vector2]:
 	var dx = x2 - x1
 	var dy = y2 - y1
 	var steps = max(abs(dx), abs(dy))
@@ -55,14 +55,14 @@ func daa(x1, y1, x2, y2):
 	var Yinc = dy / float(steps)
 	var X = x1
 	var Y = y1
-	var points = []
+	var points: Array[Vector2] = []
 	for i in range(steps+1):
 		points.append(Vector2(round(X), round(Y)))
 		X += Xinc
 		Y += Yinc
 	return points
 
-func draw_pixel_fill(mouse_pos, color):
+func draw_pixel_fill(mouse_pos, color) -> void:
 	var init_pos = mouse_to_pixel_pos(mouse_pos)
 	var init_color = pixels[init_pos.y][init_pos.x] # color to be replaced
 	if init_color == color:
@@ -78,3 +78,11 @@ func draw_pixel_fill(mouse_pos, color):
 		queue.append(Vector2(pos.x - 1, pos.y))
 		queue.append(Vector2(pos.x, pos.y + 1))
 		queue.append(Vector2(pos.x, pos.y - 1))
+
+
+# Honestly, I have no clue if this works or how to test it!
+func get_image() -> Image:
+	var pixels1d = []
+	for line in pixels:
+		pixels1d += line
+	return Image.create_from_data(width, height, false, Image.FORMAT_RGBA8, PackedColorArray(pixels1d).to_byte_array())
