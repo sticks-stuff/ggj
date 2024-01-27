@@ -65,6 +65,9 @@ func daa(x1, y1, x2, y2):
 func draw_pixel_fill(mouse_pos, color):
 	var init_pos = mouse_to_pixel_pos(mouse_pos)
 	var init_color = pixels[init_pos.y][init_pos.x] # color to be replaced
+	if init_color == color:
+		return
+
 	var queue = [init_pos]
 	while len(queue) > 0:
 		var pos = queue.pop_front()
