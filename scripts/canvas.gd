@@ -26,22 +26,25 @@ func _draw():
 		var pixel_num = 0
 		for pixel in line:
 			var color = pixel
-			if color == null:
-				color = Color.WHITE
-			draw_rect(Rect2(pixel_num * pixel_width, line_num * pixel_height, pixel_width, pixel_height), color)
+			if color != null:
+				draw_rect(Rect2(pixel_num * pixel_width, line_num * pixel_height, pixel_width, pixel_height), color)
 			pixel_num += 1
 		line_num += 1
 
 func draw_pixel_line(mouse_pos1, mouse_pos2, color):
-	var pos1 = Vector2((mouse_pos1.x - self.position.x) / pixel_width, (mouse_pos1.y - self.position.y) / pixel_height).floor()
-	var pos2 = Vector2((mouse_pos2.x - self.position.x) / pixel_width, (mouse_pos2.y - self.position.y) / pixel_height).floor()
+	var pos1 = mouse_to_pixel_pos(mouse_pos1)
+	var pos2 = mouse_to_pixel_pos(mouse_pos2)
 	
 	# If mouse out of bounds, ignore.
-	if pos1.x < 0 or pos1.x >= width or pos1.y < 0 or pos1.y >= height or pos2.x < 0 or pos2.x > width or pos2.y < 0 or pos2.y >= height:
+	if pos1.x < 0 or pos1.x >= width or pos1.y < 0 or pos1.y >= height \
+	or pos2.x < 0 or pos2.x >= width or pos2.y < 0 or pos2.y >= height:
 		return
 	
 	for point in daa(pos1.x, pos1.y, pos2.x, pos2.y):
 		pixels[point.y][point.x] = color
+
+func mouse_to_pixel_pos(mouse_pos):
+	return Vector2((mouse_pos.x - self.position.x) / pixel_width, (mouse_pos.y - self.position.y) / pixel_height).floor()
 
 # Digital Differential Analyzer Line Drawing Algorithm
 func daa(x1, y1, x2, y2):
@@ -58,3 +61,17 @@ func daa(x1, y1, x2, y2):
 		X += Xinc
 		Y += Yinc
 	return points
+
+func draw_pixel_fill(mouse_pos, color):
+	var init_pos = mouse_to_pixel_pos(mouse_pos)
+	var init_color = pixels[init_pos.y][init_pos.x] # color to be replaced
+	var queue = [init_pos]
+	while len(queue) > 0:
+		var pos = queue.pop_front()
+		if pos.x < 0 or pos.x >= width or pos.y < 0 or pos.y >= height or pixels[pos.y][pos.x] != init_color:
+			continue
+		pixels[pos.y][pos.x] = color
+		queue.append(Vector2(pos.x + 1, pos.y))
+		queue.append(Vector2(pos.x - 1, pos.y))
+		queue.append(Vector2(pos.x, pos.y + 1))
+		queue.append(Vector2(pos.x, pos.y - 1))
