@@ -144,7 +144,7 @@ theme_override_font_sizes/normal_font_size = 40
 text = "Draw something silly :P"
 fit_content = true
 
-[node name="Button" type="Button" parent="."]
+[node name="NextButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

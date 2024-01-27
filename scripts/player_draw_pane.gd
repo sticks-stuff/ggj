@@ -3,6 +3,7 @@ extends Control
 @onready var canvas = get_node("Canvas");
 @onready var colorPickerButton = $ColorPickerButton
 @onready var fillToggleButton: CheckButton = get_node("CheckButton")
+@onready var nextButton: BaseButton = get_node("NextButton")
 
 enum DrawMode {DRAW, FILL}
 @export var drawMode = DrawMode.DRAW
@@ -13,7 +14,7 @@ var last_position = Vector2(0,0);
 var color = Color.INDIAN_RED;
 
 func _ready():
-	pass
+	nextButton.pressed.connect(self._nextButtonPressed)
 
 func _input(event):
 	if is_instance_of(event, InputEventMouse):
@@ -34,3 +35,6 @@ func _input(event):
 
 func _process(delta):
 	queue_redraw()
+	
+func _nextButtonPressed():
+	print("button pressed")
