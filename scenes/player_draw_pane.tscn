@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxd7ae7230am8"]
+[gd_scene load_steps=12 format=3 uid="uid://bxd7ae7230am8"]
 
 [ext_resource type="Script" path="res://scripts/player_draw_pane.gd" id="1_x03nr"]
 [ext_resource type="Texture2D" uid="uid://byg863pw0abrd" path="res://sprites/ui_checkerboard.png" id="2_fe00l"]
@@ -8,6 +8,9 @@
 [ext_resource type="FontFile" uid="uid://dquaatdvcdp6o" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="4_wyn2s"]
 [ext_resource type="PackedScene" uid="uid://tcu8hc3q2u4f" path="res://ui/draw_mode_toggle.tscn" id="6_ffuu5"]
 [ext_resource type="PackedScene" uid="uid://dapqkgg0f682p" path="res://ui/button_standard.tscn" id="9_cayyo"]
+[ext_resource type="Texture2D" uid="uid://0a8vm3oyeha" path="res://sprites/button_undo_normal.png" id="9_gl2i4"]
+[ext_resource type="Texture2D" uid="uid://cyf1lg802jd3w" path="res://sprites/button_undo_pressed.png" id="10_imic6"]
+[ext_resource type="Texture2D" uid="uid://df15ag0jdmpek" path="res://sprites/button_undo_hover.png" id="11_tav3n"]
 
 [node name="PlayerDrawPane" type="Control"]
 layout_mode = 3
@@ -172,3 +175,20 @@ fit_content = true
 layout_mode = 1
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -491.0
+offset_top = 246.0
+offset_right = -383.0
+offset_bottom = 354.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("9_gl2i4")
+texture_pressed = ExtResource("10_imic6")
+texture_hover = ExtResource("11_tav3n")
