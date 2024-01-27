@@ -12,12 +12,10 @@ func _ready():
 func _input(event):
 	if is_instance_of(event, InputEventMouse):
 		if last_button_mask == 1 and event.button_mask == 1:
-			print("draw line between:", last_position, event.position)
+			canvas.draw_pixel_line(last_position, event.position, Color.RED)
 		last_position = event.position;
 		last_button_mask = event.button_mask;
 
-func _draw():
-	draw_rect(Rect2(0, 0, 100, 100), Color.RED)
 
 func _process(delta):
 	queue_redraw()
