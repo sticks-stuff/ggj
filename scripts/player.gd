@@ -5,7 +5,6 @@ extends CharacterBody3D
 
 var target_velocity = Vector3.ZERO
 
-
 func _physics_process(delta):
 	var direction = Vector3.ZERO
 
@@ -21,12 +20,11 @@ func _physics_process(delta):
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 		#$Pivot.basis = Basis.looking_at(direction)
+		look_at(global_transform.origin + direction, Vector3.UP)
 
 	# Ground Velocity
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
-	
-	look_at(global_transform.origin + direction, Vector3.UP)
 	
 	# Moving the Character
 	velocity = target_velocity
