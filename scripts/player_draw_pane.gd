@@ -19,9 +19,7 @@ func _ready():
 func _input(event):
 	if is_instance_of(event, InputEventMouse):
 		if event.button_mask == 1:
-			
 			# get draw mode from button
-			#drawMode = fillToggleButton.pressed ? DrawMode.FILL : DrawMode.DRAW
 			drawMode = DrawMode.FILL if fillToggleButton.button_pressed else DrawMode.DRAW
 			
 			match drawMode:
@@ -35,6 +33,6 @@ func _input(event):
 
 func _process(delta):
 	queue_redraw()
-	
+
 func _nextButtonPressed():
-	print("button pressed")
+	get_tree().change_scene_to_file("res://scenes/game_scene.tscn")
