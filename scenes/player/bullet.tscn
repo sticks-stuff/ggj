@@ -13,11 +13,13 @@ script = ExtResource("1_hgmpr")
 transform = Transform3D(-1, -1.50996e-07, 6.60024e-15, 0, -4.37114e-08, -1, 1.50996e-07, -1, 4.37114e-08, 0, 0, 0)
 texture = ExtResource("1_6euyk")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.99585, 0.128821, 0, -0.128821, 1.99585, 0, 0, 0, 2, 0, 0, 0)
-shape = SubResource("SphereShape3D_5iyf8")
-
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 transform = Transform3D(1.61233, 0, 0, 0, 1, 0, 0, 0, 1.74602, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="." groups=["bullet"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.99585, 0.128821, 0, -0.128821, 1.99585, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("SphereShape3D_5iyf8")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

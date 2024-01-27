@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxd7ae7230am8"]
+[gd_scene load_steps=3 format=3 uid="uid://bxd7ae7230am8"]
 
 [ext_resource type="Script" path="res://scripts/player_draw_pane.gd" id="1_x03nr"]
+[ext_resource type="Script" path="res://scripts/canvas.gd" id="2_ktsmk"]
 
 [node name="PlayerDrawPane" type="Control"]
 layout_mode = 3
@@ -24,3 +25,11 @@ offset_right = 300.0
 offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_ktsmk")
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Colour picker"
+color = Color(1, 0, 0, 1)
