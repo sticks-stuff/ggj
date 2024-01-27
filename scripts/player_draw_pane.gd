@@ -16,6 +16,8 @@ func _input(event):
 	if is_instance_of(event, InputEventMouse):
 		if last_button_mask == 1 and event.button_mask == 1:
 			canvas.draw_pixel_line(last_position, event.position, colorPickerButton.color)
+		elif last_button_mask == 2:
+			canvas.draw_pixel_fill(event.position, colorPickerButton.color)
 		last_position = event.position;
 		last_button_mask = event.button_mask;
 
