@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfl1hows4blsy"]
+
+[ext_resource type="PackedScene" uid="uid://1l8tlo6njpnh" path="res://assets/mesh/rock.glb" id="1_h4qg7"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gwhu1"]
+
+[node name="prop_rock" type="Node3D"]
+
+[node name="rock" parent="." instance=ExtResource("1_h4qg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.10423, -1.87912, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 1.19355, 2.02443, 0.442504)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.495, 0)
+shape = SubResource("CylinderShape3D_gwhu1")

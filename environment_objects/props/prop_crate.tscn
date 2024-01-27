@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://wvumi5arekx4"]
+
+[ext_resource type="PackedScene" uid="uid://qia4535nafn1" path="res://assets/mesh/crate.glb" id="1_vmsss"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xmn5b"]
+
+[node name="prop_crate" type="Node3D"]
+
+[node name="crate" parent="." instance=ExtResource("1_vmsss")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9837, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.495, 0)
+shape = SubResource("BoxShape3D_xmn5b")
