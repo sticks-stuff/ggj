@@ -15,6 +15,11 @@ func _physics_process(delta):
 	# Moving the Character
 	velocity = target_velocity
 	move_and_slide()
+	print("i am alive")
 
 # func set_forard(rotation):
 
+
+
+func _on_visible_on_screen_notifier_3d_screen_exited():
+	queue_free()
