@@ -19,23 +19,19 @@ func _ready():
 func findAttackRandom() -> Vector3:
 	var x = randf_range(minAttackSizeX, maxAttackSizeX)
 	var z = randf_range(minAttackSizeZ, maxAttackSizeZ)
-	return Vector3(x, 0, z)
+	return Vector3(x, 0.6, z)
 
 
 func lookAndLerp(target_position, speed, delta):
-	var direction = (target_position - global_transform.origin).normalized()
-	var target_velocity = direction * speed
-
+	look_at(target_position, Vector3.UP)
+	direction = (target_position - global_transform.origin).normalized()
+	target_velocity = direction * speed
+	
 	# Smooth the velocity
-	velocity.x = lerp(velocity.x, target_velocity.x, delta)
-	velocity.z = lerp(velocity.z, target_velocity.z, delta)
+	velocity.x = lerp(velocity.x, target_velocity.x, (delta * 1)) # magic number 10 :)
+	velocity.z = lerp(velocity.z, target_velocity.z, (delta * 1))
 
-	# Smoothly rotate the object to face the target position
-	var current_direction = transform.basis.z
-	var target_direction = (target_position - global_transform.origin).normalized()
-	var new_direction = current_direction.slerp(target_direction, delta * speed)
-	transform.basis = Basis(transform.basis.x, transform.basis.y, new_direction)
-
+	velocity = target_velocity
 	# Moving the Character
 	move_and_slide()
 

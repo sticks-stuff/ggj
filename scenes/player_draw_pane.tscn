@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxd7ae7230am8"]
+[gd_scene load_steps=6 format=3 uid="uid://bxd7ae7230am8"]
 
 [ext_resource type="Script" path="res://scripts/player_draw_pane.gd" id="1_x03nr"]
+[ext_resource type="Texture2D" uid="uid://byg863pw0abrd" path="res://sprites/ui_checkerboard.png" id="2_fe00l"]
 [ext_resource type="Script" path="res://scripts/canvas.gd" id="2_ktsmk"]
+[ext_resource type="Texture2D" uid="uid://4wa8rna2si7t" path="res://sprites/ui_border_black.png" id="3_4r22p"]
+[ext_resource type="FontFile" uid="uid://dquaatdvcdp6o" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="4_wyn2s"]
 
 [node name="PlayerDrawPane" type="Control"]
 layout_mode = 3
@@ -12,6 +15,43 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x03nr")
 
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.203922, 0.137255, 0.137255, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -350.0
+offset_right = 350.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fe00l")
+expand_mode = 5
+
 [node name="Canvas" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -19,17 +59,102 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -300.0
-offset_right = 300.0
-offset_bottom = 300.0
+offset_left = -350.0
+offset_top = -350.0
+offset_right = 350.0
+offset_bottom = 350.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(0.5, 0.5)
+mouse_filter = 1
+mouse_default_cursor_shape = 3
+color = Color(1, 1, 1, 0)
 script = ExtResource("2_ktsmk")
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -493.0
+offset_top = -120.0
+offset_right = -381.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Colour picker"
-color = Color(1, 0, 0, 1)
+color = Color(0.788235, 0.333333, 0.694118, 1)
+
+[node name="Border" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -360.0
+offset_right = 360.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 0.5)
+texture = ExtResource("3_4r22p")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="CheckButton" type="CheckButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -677.0
+offset_top = 18.0
+offset_right = -558.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.5, 2.5)
+text = "Fill mode"
+icon_alignment = 1
+expand_icon = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -346.0
+offset_top = -427.0
+offset_right = 350.0
+offset_bottom = -327.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("4_wyn2s")
+theme_override_font_sizes/normal_font_size = 40
+text = "Draw something silly :P"
+fit_content = true
+
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 384.0
+offset_top = 273.0
+offset_right = 606.0
+offset_bottom = 344.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start!"
