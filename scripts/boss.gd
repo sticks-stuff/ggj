@@ -1,17 +1,17 @@
 extends CharacterBody3D
 
 @export var speed = 14
-@export var max_distance = 50
+@export var min_distance = 10
 
 var target_velocity = Vector3.ZERO
 var target_position = null
 var start_position = Translation
 var direction = Vector3.ZERO
 
-var minAttackSizeX = -8 # lol
-var maxAttackSizeX = 8 # lol
-var minAttackSizeZ = -4 # lol
-var maxAttackSizeZ = 4 # lol
+var minAttackSizeX = -16 # lol
+var maxAttackSizeX = 16 # lol
+var minAttackSizeZ = -8 # lol
+var maxAttackSizeZ = 8 # lol
 
 func _ready():
 	print(findAttackRandom())
@@ -19,31 +19,52 @@ func _ready():
 func findAttackRandom() -> Vector3:
 	var x = randf_range(minAttackSizeX, maxAttackSizeX)
 	var z = randf_range(minAttackSizeZ, maxAttackSizeZ)
-	return Vector3(x, 0.6, z)
+	return Vector3(x, 0, z)
 
 
 func lookAndLerp(target_position, speed, delta):
-	look_at(target_position, Vector3.UP)
-	direction = (target_position - global_transform.origin).normalized()
-	target_velocity = direction * speed
-	
-	# Smooth the velocity
-	velocity.x = lerp(velocity.x, target_velocity.x, (delta * 1)) # magic number 10 :)
-	velocity.z = lerp(velocity.z, target_velocity.z, (delta * 1))
+	var direction = (target_position - global_transform.origin).normalized()
+	var target_velocity = direction * speed
 
-	velocity = target_velocity
+	# Smooth the velocity
+	velocity.x = lerp(velocity.x, target_velocity.x, delta)
+	velocity.z = lerp(velocity.z, target_velocity.z, delta)
+
+	# Calculate the target rotation angle
+	var target_angle = atan2(direction.x, direction.z)
+
+	# Smoothly rotate the object to face the target position
+	var current_angle = self.rotation.y
+	var new_angle = lerp(current_angle, target_angle, delta * speed)
+	self.rotation.y = new_angle
+
 	# Moving the Character
 	move_and_slide()
+
+func slowdown(delta):
+	# Reduce the velocity to zero
+	velocity.x = lerp(velocity.x, 0.0, delta * 5) # magic number :)
+	velocity.z = lerp(velocity.z, 0.0, delta * 5)
+	move_and_slide()
+
+var timeAtLastNewTarget = 0
 
 func _physics_process(delta):
 	var curSpeed = speed
 	if target_position == null:
 		target_position = findAttackRandom()
+		timeAtLastNewTarget = Time.get_ticks_msec()
+		if target_position.distance_to(self.global_transform.origin) < min_distance:
+			target_position = null
+			return
 	var current_position = self.global_transform.origin
-	if current_position.distance_to(target_position) > 0.5:
-		lookAndLerp(target_position, curSpeed, delta)
+	if current_position.distance_to(target_position) > 2:
 		print("Moving to: ", target_position, " from: ", current_position)
+		lookAndLerp(target_position, curSpeed, delta)
 	else:
+		slowdown(delta)
 		print("Reached: ", target_position)
-		target_position = null
 		target_velocity = Vector3.ZERO
+		print("Time since last new target: ", Time.get_ticks_msec() - timeAtLastNewTarget)
+		if Time.get_ticks_msec() - timeAtLastNewTarget > 10000: # takes about 4000ms to break after reaching target
+			target_position = null
