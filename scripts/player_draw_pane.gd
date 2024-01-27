@@ -1,6 +1,6 @@
 extends Control
 
-@onready var canvas = get_node("Canvas");
+@onready var canvas = $Canvas;
 @onready var colorPickerButton = $ColorPickerButton
 @onready var fillToggleButton: CheckButton = get_node("CheckButton")
 @onready var nextButton: BaseButton = get_node("NextButton")
@@ -35,4 +35,8 @@ func _process(delta):
 	queue_redraw()
 
 func _nextButtonPressed():
-	get_tree().change_scene_to_file("res://scenes/game_scene.tscn")
+	# Get texture
+	var game = preload("res://scenes/game_scene.tscn").instantiate();
+	game.get_node("BossBody").texture = canvas.
+	get_tree().root.add_child(game)
+	get_tree().root.remove_child(self)	

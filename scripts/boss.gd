@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 @export var speed = 14
 @export var max_distance = 50
+@export var texture: Texture2D = PlaceholderTexture2D.new()
+
+@onready var sprite3D: Sprite3D = $Sprite3D
 
 var target_velocity = Vector3.ZERO
 var target_position = null
@@ -15,6 +18,9 @@ var maxAttackSizeZ = 4 # lol
 
 func _ready():
 	print(findAttackRandom())
+	print(texture)
+	sprite3D.texture = texture
+	
 
 func findAttackRandom() -> Vector3:
 	var x = randf_range(minAttackSizeX, maxAttackSizeX)
@@ -42,7 +48,6 @@ func _physics_process(delta):
 	var current_position = self.global_transform.origin
 	if current_position.distance_to(target_position) > 0.5:
 		lookAndLerp(target_position, curSpeed, delta)
-		print("Moving to: ", target_position, " from: ", current_position)
 	else:
 		print("Reached: ", target_position)
 		target_position = null

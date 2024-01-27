@@ -13,7 +13,7 @@ func _ready():
 	for y in range(height):
 		var line = []
 		for x in range(height):
-			line.append(null)
+			line.append(Color.TRANSPARENT)
 		pixels.append(line)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -83,8 +83,9 @@ func draw_pixel_fill(mouse_pos, color) -> void:
 
 
 # Honestly, I have no clue if this works or how to test it!
-func get_image() -> Image:
-	var pixels1d = []
-	for line in pixels:
-		pixels1d += line
-	return Image.create_from_data(width, height, false, Image.FORMAT_RGBA8, PackedColorArray(pixels1d).to_byte_array())
+#func get_image() -> Texture2D:
+	#var texture = Texture2D.new()
+	#for x in range(width):
+		#for y in range(height):
+			#texture.draw_rect(Rect2(), Vector2(x,y), pixels[y][x])
+	#return texture
