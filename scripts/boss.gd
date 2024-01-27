@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-# How fast the player moves in meters per second.
 @export var speed = 14
 @export var max_distance = 50
 
