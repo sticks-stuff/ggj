@@ -4,26 +4,50 @@ extends CharacterBody3D
 @export var max_distance = 50
 
 var target_velocity = Vector3.ZERO
+var target_position = null
 var start_position = Translation
 var direction = Vector3.ZERO
 
+var minAttackSizeX = -8 # lol
+var maxAttackSizeX = 8 # lol
+var minAttackSizeZ = -4 # lol
+var maxAttackSizeZ = 4 # lol
+
+func _ready():
+	print(findAttackRandom())
+
+func findAttackRandom() -> Vector3:
+	var x = randf_range(minAttackSizeX, maxAttackSizeX)
+	var z = randf_range(minAttackSizeZ, maxAttackSizeZ)
+	return Vector3(x, 0, z)
+
+
+func lookAndLerp(target_position, speed, delta):
+	var direction = (target_position - global_transform.origin).normalized()
+	var target_velocity = direction * speed
+
+	# Smooth the velocity
+	velocity.x = lerp(velocity.x, target_velocity.x, delta)
+	velocity.z = lerp(velocity.z, target_velocity.z, delta)
+
+	# Smoothly rotate the object to face the target position
+	var current_direction = transform.basis.z
+	var target_direction = (target_position - global_transform.origin).normalized()
+	var new_direction = current_direction.slerp(target_direction, delta * speed)
+	transform.basis = Basis(transform.basis.x, transform.basis.y, new_direction)
+
+	# Moving the Character
+	move_and_slide()
 
 func _physics_process(delta):
-	
-	direction.x = randf_range(-1, 1)
-	direction.z = randf_range(-1, 1)
-	
-	# Boss movement
-
-	if direction != Vector3.ZERO:
-		direction = direction.normalized()
-		#$Pivot.basis = Basis.looking_at(direction)
-		look_at(global_transform.origin + direction, Vector3.UP)
-
-	# Ground Velocity
-	target_velocity.x = direction.x * speed
-	target_velocity.z = direction.z * speed
-	
-	# Moving the Character
-	velocity = target_velocity
-	move_and_slide()
+	var curSpeed = speed
+	if target_position == null:
+		target_position = findAttackRandom()
+	var current_position = self.global_transform.origin
+	if current_position.distance_to(target_position) > 0.5:
+		lookAndLerp(target_position, curSpeed, delta)
+		print("Moving to: ", target_position, " from: ", current_position)
+	else:
+		print("Reached: ", target_position)
+		target_position = null
+		target_velocity = Vector3.ZERO
