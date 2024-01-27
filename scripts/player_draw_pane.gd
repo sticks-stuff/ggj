@@ -15,7 +15,6 @@ var color = Color.INDIAN_RED;
 
 func _ready():
 	nextButton.pressed.connect(self._nextButtonPressed)
-	pass
 
 func _input(event):
 	if is_instance_of(event, InputEventMouse):
@@ -38,4 +37,4 @@ func _process(delta):
 	queue_redraw()
 	
 func _nextButtonPressed():
-	
+	print("button pressed")
