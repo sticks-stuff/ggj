@@ -2,11 +2,15 @@ extends CharacterBody3D
 
 # How fast the player moves in meters per second.
 @export var speed = 14
+@export var healthbar: Range
 
 var target_velocity = Vector3.ZERO
 var direction = Vector3.ZERO
 var max_hp = 3
 var current_hp = 3
+
+func _ready():
+	_update_healthbar(current_hp)
 
 func _physics_process(delta):
 	var curSpeed = speed
@@ -52,5 +56,9 @@ func _on_area_3d_area_entered(area):
 
 func damage(amount):
 	current_hp -= amount
+	_update_healthbar(current_hp)
 	if current_hp <= 0:
 		print("player hp reduced to 0")
+		
+func _update_healthbar(value):
+	healthbar.value = value

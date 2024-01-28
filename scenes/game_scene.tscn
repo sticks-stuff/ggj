@@ -11,8 +11,9 @@ tonemap_exposure = 0.35
 
 [node name="Node3D" type="Node3D"]
 
-[node name="player" parent="." instance=ExtResource("1_4jftv")]
+[node name="player" parent="." node_paths=PackedStringArray("healthbar") instance=ExtResource("1_4jftv")]
 unique_name_in_owner = true
+healthbar = NodePath("../HUD/ProgressBar")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.99999, -0.00358599, -0.0027862, 0.00447027, 0.669326, 0.742956, -0.000799358, -0.742961, 0.669335, 1.07645, 59.2832, 51.0398)
@@ -34,3 +35,17 @@ sky_mode = 1
 
 [node name="BossBody" parent="." instance=ExtResource("3_n1xjb")]
 transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD"]
+layout_mode = 0
+offset_right = 382.0
+offset_bottom = 63.0
+max_value = 3.0
