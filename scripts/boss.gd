@@ -5,6 +5,8 @@ extends CharacterBody3D
 
 @onready var player = get_parent().get_node("player")
 
+var HEALTH = 100
+
 var target_velocity = Vector3.ZERO
 var target_position = null
 var start_position = Translation
@@ -80,7 +82,7 @@ func _physics_process(delta):
 		lookAndLerp(target_position, curSpeed, delta)
 	else:
 		slowdown(delta)
-		print("Reached: ", target_position)
+		# print("Reached: ", target_position)
 		if timeAtReach == null:
 			timeAtReach = Time.get_ticks_msec()
 		if hasFired == false and Time.get_ticks_msec() - timeAtReach > 1000:
@@ -96,3 +98,9 @@ func _physics_process(delta):
 			target_position = null
 			hasFired = false
 			timeAtReach = null
+
+
+func _on_area_3d_area_entered(area):
+	if area.is_in_group("player_bullet"):
+		HEALTH -= 1
+		print("boss hit! health: ", HEALTH)
