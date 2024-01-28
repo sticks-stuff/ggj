@@ -4,8 +4,9 @@ extends CharacterBody3D
 @export var speed = 14
 
 var target_velocity = Vector3.ZERO
-
 var direction = Vector3.ZERO
+var max_hp = 3
+var current_hp = 3
 
 func _physics_process(delta):
 	var curSpeed = speed
