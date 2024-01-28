@@ -16,4 +16,4 @@ max_speed = 11
 [node name="Bullet5" parent="." instance=ExtResource("1_ceulw")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.0442152, 0, -2.17283)
 speed = 7
-max_speed = 10
+max_speed = 15
