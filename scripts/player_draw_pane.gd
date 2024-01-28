@@ -2,7 +2,7 @@ extends Control
 
 @onready var canvas = $Canvas;
 @onready var colorPickerButton = $ColorPickerButton
-@onready var fillToggleButton: CheckButton = get_node("CheckButton")
+@onready var fillToggleButton: BaseButton = get_node("CheckButton")
 @onready var nextButton: BaseButton = get_node("NextButton")
 
 enum DrawMode {DRAW, FILL}

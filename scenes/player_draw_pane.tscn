@@ -1,16 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxd7ae7230am8"]
+[gd_scene load_steps=12 format=3 uid="uid://bxd7ae7230am8"]
 
 [ext_resource type="Script" path="res://scripts/player_draw_pane.gd" id="1_x03nr"]
 [ext_resource type="Texture2D" uid="uid://byg863pw0abrd" path="res://sprites/ui_checkerboard.png" id="2_fe00l"]
 [ext_resource type="Script" path="res://scripts/canvas.gd" id="2_ktsmk"]
+[ext_resource type="Texture2D" uid="uid://c2fgwrb7pyjp8" path="res://sprites/ui_innershadow.png" id="2_sd2df"]
 [ext_resource type="Texture2D" uid="uid://4wa8rna2si7t" path="res://sprites/ui_border_black.png" id="3_4r22p"]
 [ext_resource type="FontFile" uid="uid://dquaatdvcdp6o" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="4_wyn2s"]
+[ext_resource type="PackedScene" uid="uid://tcu8hc3q2u4f" path="res://ui/draw_mode_toggle.tscn" id="6_ffuu5"]
+[ext_resource type="PackedScene" uid="uid://dapqkgg0f682p" path="res://ui/button_standard.tscn" id="9_cayyo"]
+[ext_resource type="Texture2D" uid="uid://0a8vm3oyeha" path="res://sprites/button_undo_normal.png" id="9_gl2i4"]
+[ext_resource type="Texture2D" uid="uid://cyf1lg802jd3w" path="res://sprites/button_undo_pressed.png" id="10_imic6"]
+[ext_resource type="Texture2D" uid="uid://df15ag0jdmpek" path="res://sprites/button_undo_hover.png" id="11_tav3n"]
 
 [node name="PlayerDrawPane" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 7.0
+offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x03nr")
@@ -28,15 +36,38 @@ mouse_filter = 2
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -160.0
+offset_right = 160.0
+offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.203922, 0.137255, 0.137255, 1)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Border2" type="NinePatchRect" parent="."]
+modulate = Color(1, 1, 1, 0.239216)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 0.5)
+texture = ExtResource("2_sd2df")
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+
+[node name="Checkerboard" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -78,10 +109,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -493.0
-offset_top = -120.0
-offset_right = -381.0
-offset_bottom = -8.0
+offset_left = -491.0
+offset_top = -106.0
+offset_right = -379.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Colour picker"
@@ -107,23 +138,19 @@ patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
 
-[node name="CheckButton" type="CheckButton" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -677.0
-offset_top = 18.0
-offset_right = -558.0
-offset_bottom = 49.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2.5, 2.5)
-text = "Fill mode"
-icon_alignment = 1
-expand_icon = true
+[node name="CheckButton" parent="." instance=ExtResource("6_ffuu5")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 469.0
+offset_top = 190.0
+offset_right = 577.001
+offset_bottom = 416.001
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -144,17 +171,24 @@ theme_override_font_sizes/normal_font_size = 40
 text = "Draw something silly :P"
 fit_content = true
 
-[node name="NextButton" type="Button" parent="."]
+[node name="NextButton" parent="." instance=ExtResource("9_cayyo")]
+layout_mode = 1
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 384.0
-offset_top = 273.0
-offset_right = 606.0
-offset_bottom = 344.0
+offset_left = -491.0
+offset_top = 246.0
+offset_right = -383.0
+offset_bottom = 354.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Start!"
+texture_normal = ExtResource("9_gl2i4")
+texture_pressed = ExtResource("10_imic6")
+texture_hover = ExtResource("11_tav3n")
