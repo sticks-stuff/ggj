@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cd37g464hv3pr" path="res://sprites/ui_healthbar_fill.png" id="3_xew32"]
 [ext_resource type="PackedScene" uid="uid://dapqkgg0f682p" path="res://ui/button_standard.tscn" id="4_0yu2s"]
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("healthbar", "boss_healthbar")]
+[node name="HUD" type="Control" node_paths=PackedStringArray("healthbar", "boss_healthbar", "death_screen", "playagain_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +18,8 @@ grow_vertical = 2
 script = ExtResource("1_0tpmo")
 healthbar = NodePath("PlayerHealthBar")
 boss_healthbar = NodePath("BossHealthBar")
+death_screen = NodePath("DeathScreen")
+playagain_button = NodePath("DeathScreen/NextButton")
 
 [node name="PlayerHealthBar" type="TextureProgressBar" parent="."]
 layout_mode = 0
