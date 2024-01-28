@@ -83,9 +83,8 @@ func draw_pixel_fill(mouse_pos, color) -> void:
 
 # Saves the 2d array of pixels to a png file and returns the path of that file
 func save_image() -> String:
-	var path: String = "C:\\Users\\VUW_FAD03\\ggj\\image.png"
-	var image = Image.new()
-	image.create(width, height, false, Image.FORMAT_RGBA8)
+	var path: String = "user://image.png"
+	var image = Image.create(width, height, false, Image.FORMAT_RGBA8)
 	for x in range(width):
 		for y in range(height):
 			image.set_pixel(x, y, pixels[y][x])
