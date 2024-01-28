@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 # How fast the player moves in meters per second.
 @export var speed = 14
+var HEALTH = 5
 
 var target_velocity = Vector3.ZERO
 
@@ -38,7 +39,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 #### FIRE
-var bullet_scene = preload("res://scenes/player/bullet.tscn")
+var bullet_scene = preload("res://scenes/player/player_bullet.tscn")
 
 func _input(event):
 	if event.is_action_pressed("fire"):
@@ -47,4 +48,6 @@ func _input(event):
 
 
 func _on_area_3d_area_entered(area):
-	pass # Replace with function body.
+	if area.is_in_group("enemy_bullet"):
+		HEALTH -= 1
+		print("player hit! health: ", HEALTH)

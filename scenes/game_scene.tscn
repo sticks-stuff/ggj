@@ -17,6 +17,7 @@ unique_name_in_owner = true
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.99999, -0.00358599, -0.0027862, 0.00447027, 0.669326, 0.742956, -0.000799358, -0.742961, 0.669335, 1.07645, 59.2832, 51.0398)
 projection = 1
+current = true
 size = 34.76
 
 [node name="EnvironmentNode" parent="." instance=ExtResource("3_l67jm")]
