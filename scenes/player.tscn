@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5t28pvrvfg8y"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_gwplv"]
-[ext_resource type="Texture2D" uid="uid://brdymnyci56n0" path="res://assets/_TEMP_player.svg" id="2_x2evk"]
+[ext_resource type="Texture2D" uid="uid://ctkkmb8m4utjp" path="res://sprites/sprite_player.png" id="2_cjvqn"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4ax3u"]
 
@@ -9,8 +9,9 @@
 script = ExtResource("1_gwplv")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-texture = ExtResource("2_x2evk")
+transform = Transform3D(-0.55, -4.80825e-08, 2.10175e-15, -8.38528e-24, -2.40413e-08, -0.55, 4.80825e-08, -0.55, 2.40413e-08, 0, 0, 0)
+shaded = true
+texture = ExtResource("2_cjvqn")
 
 [node name="Area3D" type="Area3D" parent="." groups=["player"]]
 
