@@ -12,9 +12,9 @@ tonemap_exposure = 0.35
 
 [node name="Node3D" type="Node3D"]
 
-[node name="player" parent="." node_paths=PackedStringArray("healthbar") instance=ExtResource("1_4jftv")]
+[node name="player" parent="." node_paths=PackedStringArray("HUD") instance=ExtResource("1_4jftv")]
 unique_name_in_owner = true
-healthbar = NodePath("")
+HUD = NodePath("../HUD")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.99999, -0.00358599, -0.0027862, 0.00447027, 0.669326, 0.742956, -0.000799358, -0.742961, 0.669335, 1.07645, 59.2832, 51.0398)
