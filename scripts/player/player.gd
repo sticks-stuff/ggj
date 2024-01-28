@@ -51,7 +51,7 @@ func _input(event):
 		get_parent().add_child(bullet_instance)
 
 func _on_area_3d_area_entered(area):
-	if area.is_in_group("enemy_bullet"):
+	if area.is_in_group("enemy_bullet") or area.is_in_group("boss"):
 		damage(1)
 		
 func damage(amount):
