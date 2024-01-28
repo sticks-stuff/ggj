@@ -1,9 +1,14 @@
 extends CharacterBody3D
 @export var speed = 15
 @export var max_speed = 30  # Maximum speed
+@export var fireAtPlayer = true
+var forward_direction
 
 func _physics_process(delta):
-	var forward_direction = transform.basis.z
+	if fireAtPlayer == false:
+		forward_direction = transform.basis.z
+	else:
+		forward_direction = get_parent().transform.basis.z
 	var target_velocity = forward_direction * max_speed  # Target velocity is forward direction times max speed
 
 	# Lerp the current velocity to the target velocity
