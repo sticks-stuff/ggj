@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq3lksrtvsdlx"]
+
+[ext_resource type="PackedScene" uid="uid://dxd03hqr71cf0" path="res://scenes/boss/enemy_bullet.tscn" id="1_1tyrq"]
+
+[node name="Attack1" type="Node3D"]
+
+[node name="Bullet" parent="." instance=ExtResource("1_1tyrq")]
+transform = Transform3D(-0.198657, 0, 0.151775, 0, 0.25, 0, -0.151775, 0, -0.198657, 3.00792, -1.42109e-14, -1.46245)
+speed = 30
+max_speed = 60
+fireAtPlayer = false
+
+[node name="Bullet5" parent="." instance=ExtResource("1_1tyrq")]
+transform = Transform3D(-0.249231, 0, 0.0195975, 0, 0.25, 0, -0.0195975, 0, -0.249231, 1.13701, -1.42109e-14, -3.07306)
+speed = 30
+max_speed = 60
+fireAtPlayer = false
+
+[node name="Bullet6" parent="." instance=ExtResource("1_1tyrq")]
+transform = Transform3D(0.232534, 0, -0.0918042, 0, 0.25, 0, 0.0918042, 0, 0.232534, 0.526936, -1.42109e-14, 1.83197)
+speed = 30
+max_speed = 60
+fireAtPlayer = false
+
+[node name="Bullet7" parent="." instance=ExtResource("1_1tyrq")]
+transform = Transform3D(0.132395, 0, -0.212066, 0, 0.25, 0, 0.212066, 0, 0.132395, -1.36024, -1.42109e-14, 1.93772)
+speed = 30
+max_speed = 60
+fireAtPlayer = false
+
+[node name="Bullet8" parent="." instance=ExtResource("1_1tyrq")]
+transform = Transform3D(-0.0875766, 0, -0.234159, 0, 0.25, 0, 0.234159, 0, -0.0875766, -2.3933, -1.42109e-14, -1.21842)
+speed = 30
+max_speed = 60
+fireAtPlayer = false
+
+[node name="Bullet9" parent="." instance=ExtResource("1_1tyrq")]
+transform = Transform3D(-0.225681, 0, -0.107557, 0, 0.25, 0, 0.107557, 0, -0.225681, -0.888445, -1.42109e-14, -1.29976)
+speed = 30
+max_speed = 60
+fireAtPlayer = false
+
+[node name="Bullet10" parent="." instance=ExtResource("1_1tyrq")]
+transform = Transform3D(-0.220101, 0, 0.118557, 0, 0.25, 0, -0.118557, 0, -0.220101, 2.46292, -1.42109e-14, -2.73955)
+speed = 30
+max_speed = 60
+fireAtPlayer = false
+
+[node name="Bullet12" parent="." instance=ExtResource("1_1tyrq")]
+transform = Transform3D(-0.220101, 0, 0.118557, 0, 0.25, 0, -0.118557, 0, -0.220101, -0.13195, -1.42109e-14, -3.25201)
+speed = 30
+max_speed = 60
+fireAtPlayer = false
+
+[node name="Bullet11" parent="." instance=ExtResource("1_1tyrq")]
+transform = Transform3D(0.11783, 0, 0.220491, 0, 0.25, 0, -0.220491, 0, 0.11783, 3.15434, -1.42109e-14, -0.0877413)
+speed = 30
+max_speed = 60
+fireAtPlayer = false
+
+[node name="Bullet2" parent="." instance=ExtResource("1_1tyrq")]
+transform = Transform3D(0.121851, 0, 0.218294, 0, 0.25, 0, -0.218294, 0, 0.121851, 2.29905, 0, 1.12079)
+speed = 30
+max_speed = 60
+fireAtPlayer = false
+
+[node name="Bullet3" parent="." instance=ExtResource("1_1tyrq")]
+transform = Transform3D(0.130948, 0, -0.212961, 0, 0.25, 0, 0.212961, 0, 0.130948, -1.15591, 0, 0.34805)
+speed = 30
+max_speed = 60
+fireAtPlayer = false
+
+[node name="Bullet4" parent="." instance=ExtResource("1_1tyrq")]
+transform = Transform3D(-0.142822, 0, -0.205188, 0, 0.25, 0, 0.205188, 0, -0.142822, -1.60295, 0, -2.74928)
+speed = 30
+max_speed = 60
+fireAtPlayer = false

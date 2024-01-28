@@ -1,17 +1,19 @@
 [gd_scene load_steps=2 format=3 uid="uid://c4ysd4c1e47rn"]
 
-[ext_resource type="PackedScene" path="res://scenes/boss/enemy_bullet.tscn" id="1_ceulw"]
+[ext_resource type="PackedScene" uid="uid://dxd03hqr71cf0" path="res://scenes/boss/enemy_bullet.tscn" id="1_ceulw"]
 
 [node name="Attack1" type="Node3D"]
 
 [node name="Bullet" parent="." instance=ExtResource("1_ceulw")]
-transform = Transform3D(-0.198657, 0, 0.151775, 0, 0.25, 0, -0.151775, 0, -0.198657, 3.00792, -1.42109e-14, -1.46245)
-
-[node name="Bullet2" parent="." instance=ExtResource("1_ceulw")]
-transform = Transform3D(0.121851, 0, 0.218294, 0, 0.25, 0, -0.218294, 0, 0.121851, 2.29905, 0, 1.12079)
+speed = 7
+max_speed = 13
 
 [node name="Bullet3" parent="." instance=ExtResource("1_ceulw")]
-transform = Transform3D(0.130948, 0, -0.212961, 0, 0.25, 0, 0.212961, 0, 0.130948, -1.15591, 0, 0.34805)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.0568476, 0, -1.05483)
+speed = 7
+max_speed = 11
 
-[node name="Bullet4" parent="." instance=ExtResource("1_ceulw")]
-transform = Transform3D(-0.142822, 0, -0.205188, 0, 0.25, 0, 0.205188, 0, -0.142822, -1.60295, 0, -2.74928)
+[node name="Bullet5" parent="." instance=ExtResource("1_ceulw")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.0442152, 0, -2.17283)
+speed = 7
+max_speed = 10

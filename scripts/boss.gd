@@ -101,7 +101,7 @@ func _physics_process(delta):
 			print("Firing")
 			var attack_instance = _selectRandomAttack().instantiate()
 			attack_instance.position = self.global_transform.origin
-			attack_instance.rotation = self.rotation
+			attack_instance.rotation.y = self.rotation.y
 			get_parent().add_child(attack_instance)
 			hasFired = true
 		target_velocity = Vector3.ZERO
