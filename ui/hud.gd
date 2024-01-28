@@ -3,11 +3,14 @@ extends Control
 @export var healthbar: Range
 @export var boss_healthbar: Range
 @export var death_screen: Control
+@export var win_screen: Control
 @export var playagain_button: BaseButton
+@export var playagain_button2: BaseButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	playagain_button.pressed.connect(self._play_again)
+	playagain_button2.pressed.connect(self._play_again)
 	death_screen.visible = false;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,9 +24,14 @@ func update_player_hp(v):
 	
 func update_boss_hp(v):
 	boss_healthbar.value = v
+	if v <= 0:
+		show_win_screen()
 	
 func  show_death_screen():
-	death_screen.visible = true;
+	death_screen.visible = true
+	
+func show_win_screen():
+	win_screen.visible = true
 	
 func _play_again():
 	var root_node = get_tree().get_root()
