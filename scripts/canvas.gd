@@ -81,6 +81,20 @@ func draw_pixel_fill(mouse_pos, color) -> void:
 		queue.append(Vector2(pos.x, pos.y + 1))
 		queue.append(Vector2(pos.x, pos.y - 1))
 
+# Saves the 2d array of pixels to a png file and returns the path of that file
+func save_image() -> String:
+	var path: String = "C:\\Users\\VUW_FAD03\\ggj\\image.png"
+	var image = Image.new()
+	image.create(width, height, false, Image.FORMAT_RGBA8)
+	for x in range(width):
+		for y in range(height):
+			image.set_pixel(x, y, pixels[y][x])
+	var error = image.save_png(path)
+	if error == OK:
+		print("Saved image to: ", path)
+	else:
+		print("Failed to save image, error code: ", error)
+	return path
 
 # Honestly, I have no clue if this works or how to test it!
 #func get_image() -> Texture2D:

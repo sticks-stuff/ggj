@@ -37,6 +37,7 @@ func _process(delta):
 func _nextButtonPressed():
 	# Get texture
 	var game = preload("res://scenes/game_scene.tscn").instantiate();
-	game.get_node("BossBody").texture = canvas.
+	canvas.save_image()
+	game.get_node("BossBody").texture = null # TODO!
 	get_tree().root.add_child(game)
 	get_tree().root.remove_child(self)	
