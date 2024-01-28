@@ -2,10 +2,15 @@ extends CharacterBody3D
 
 # How fast the player moves in meters per second.
 @export var speed = 14
+@export var HUD: Control
 
 var target_velocity = Vector3.ZERO
-
 var direction = Vector3.ZERO
+var max_hp = 3
+var current_hp = 3
+
+func _ready():
+	HUD.update_player_hp(current_hp)
 
 func _physics_process(delta):
 	var curSpeed = speed
@@ -38,13 +43,20 @@ func _physics_process(delta):
 	move_and_slide()
 
 #### FIRE
-var bullet_scene = preload("res://scenes/player/bullet.tscn")
+var bullet_scene = preload("res://scenes/player/player_bullet.tscn")
 
 func _input(event):
 	if event.is_action_pressed("fire"):
 		var bullet_instance = bullet_scene.instantiate()
 		get_parent().add_child(bullet_instance)
 
-
 func _on_area_3d_area_entered(area):
-	pass # Replace with function body.
+	if area.is_in_group("enemy_bullet"):
+		damage(1)
+		
+func damage(amount):
+	current_hp -= amount
+	print("player hit! health: ", current_hp)
+	HUD.update_player_hp(current_hp)
+	if current_hp <= 0:
+		print("player hp reduced to 0")
