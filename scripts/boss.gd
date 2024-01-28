@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var speed = 14
 @export var max_distance = 50
-@export var texture: Texture2D = PlaceholderTexture2D.new()
+@export var image_path: String
 
 @onready var sprite3D: Sprite3D = $Sprite3D
 
@@ -18,9 +18,7 @@ var maxAttackSizeZ = 4 # lol
 
 func _ready():
 	print(findAttackRandom())
-	print(texture)
-	sprite3D.texture = texture
-	
+	sprite3D.texture = ImageTexture.create_from_image(Image.load_from_file(image_path))
 
 func findAttackRandom() -> Vector3:
 	var x = randf_range(minAttackSizeX, maxAttackSizeX)

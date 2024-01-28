@@ -94,11 +94,3 @@ func save_image() -> String:
 	else:
 		print("Failed to save image, error code: ", error)
 	return path
-
-# Honestly, I have no clue if this works or how to test it!
-#func get_image() -> Texture2D:
-	#var texture = Texture2D.new()
-	#for x in range(width):
-		#for y in range(height):
-			#texture.draw_rect(Rect2(), Vector2(x,y), pixels[y][x])
-	#return texture
