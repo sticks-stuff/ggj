@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhuqbh0txd8de"]
+[gd_scene load_steps=2 format=3 uid="uid://c4ysd4c1e47rn"]
 
-[ext_resource type="PackedScene" uid="uid://dxd03hqr71cf0" path="res://scenes/boss/enemy_bullet.tscn" id="1_ceulw"]
+[ext_resource type="PackedScene" path="res://scenes/boss/enemy_bullet.tscn" id="1_ceulw"]
 
 [node name="Attack1" type="Node3D"]
 
