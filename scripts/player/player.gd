@@ -46,6 +46,11 @@ func _input(event):
 		var bullet_instance = bullet_scene.instantiate()
 		get_parent().add_child(bullet_instance)
 
-
 func _on_area_3d_area_entered(area):
 	pass # Replace with function body.
+	
+
+func damage(amount):
+	current_hp -= amount
+	if current_hp <= 0:
+		print("player hp reduced to 0")
