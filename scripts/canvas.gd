@@ -7,14 +7,34 @@ var pixels = []
 var pixel_height = get_size().y / width
 var pixel_width = get_size().x / height
 
+var undo_stack = []
+var changed_since_undo_state = false # Stores true if changes have been made to the pixel canvas since the last undo state was recorded
+
+func record_undo_state():
+	if changed_since_undo_state:
+		print("recorded undo state")
+		undo_stack.append(pixels.duplicate(true))
+		changed_since_undo_state = false
+
+func undo():
+	if len(undo_stack) >= 2:
+		print("undoing")
+		undo_stack.pop_back() # current
+		pixels = undo_stack[-1].duplicate(true) # last
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var mid = canvas_size / 2
+	var radius = canvas_size.x * 0.45
 	for y in range(height):
 		var line = []
 		for x in range(height):
-			line.append(Color.TRANSPARENT)
+			var color = Color.TRANSPARENT
+			if Vector2(x, y).distance_to(mid) <= radius:
+				color = Color.RED
+			line.append(color)
 		pixels.append(line)
+	undo_stack.append(pixels.duplicate(true))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -36,15 +56,20 @@ func draw_pixel_line(mouse_pos1, mouse_pos2, color) -> void:
 	var pos2 = mouse_to_pixel_pos(mouse_pos2)
 	
 	# If mouse out of bounds, ignore.
-	if pos1.x < 0 or pos1.x >= width or pos1.y < 0 or pos1.y >= height \
-	or pos2.x < 0 or pos2.x >= width or pos2.y < 0 or pos2.y >= height:
+	if pos1 == null or pos2 == null:
 		return
 	
 	for point in daa(pos1.x, pos1.y, pos2.x, pos2.y):
 		pixels[point.y][point.x] = color
+		changed_since_undo_state = true
+	
 
-func mouse_to_pixel_pos(mouse_pos) -> Vector2:
-	return Vector2((mouse_pos.x - self.position.x) / pixel_width, (mouse_pos.y - self.position.y) / pixel_height).floor()
+# Converts the mouse position on screen to a position on the pixel canvas. Or returns null if its no on the screen.
+func mouse_to_pixel_pos(mouse_pos):
+	var pos = Vector2((mouse_pos.x - self.position.x) / pixel_width, (mouse_pos.y - self.position.y) / pixel_height).floor()
+	if pos.x < 0 or pos.x >= canvas_size.x or pos.y < 0 or pos.y >= canvas_size.y:
+		return null
+	return pos
 
 # Digital Differential Analyzer Line Drawing Algorithm
 func daa(x1, y1, x2, y2) -> Array[Vector2]:
@@ -64,7 +89,8 @@ func daa(x1, y1, x2, y2) -> Array[Vector2]:
 
 func draw_pixel_fill(mouse_pos, color) -> void:
 	var init_pos = mouse_to_pixel_pos(mouse_pos)
-	if init_pos.x < 0 or init_pos.x >= width or init_pos.y < 0 or init_pos.y >= height:
+	# If mouse out of bounds, ignore.
+	if init_pos == null:
 		return
 	var init_color = pixels[init_pos.y][init_pos.x] # color to be replaced
 	if init_color == color:
@@ -76,6 +102,7 @@ func draw_pixel_fill(mouse_pos, color) -> void:
 		if pos.x < 0 or pos.x >= width or pos.y < 0 or pos.y >= height or pixels[pos.y][pos.x] != init_color:
 			continue
 		pixels[pos.y][pos.x] = color
+		changed_since_undo_state = true
 		queue.append(Vector2(pos.x + 1, pos.y))
 		queue.append(Vector2(pos.x - 1, pos.y))
 		queue.append(Vector2(pos.x, pos.y + 1))
