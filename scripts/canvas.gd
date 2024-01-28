@@ -31,7 +31,7 @@ func _ready():
 		for x in range(height):
 			var color = Color.TRANSPARENT
 			if Vector2(x, y).distance_to(mid) <= radius:
-				color = Color.RED
+				color = Color.CRIMSON
 			line.append(color)
 		pixels.append(line)
 	undo_stack.append(pixels.duplicate(true))

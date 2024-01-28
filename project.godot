@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Ggj"
+config/name="Draw_KO"
+config/description="Draw your enemy"
 run/main_scene="res://scenes/player_draw_pane.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://sprites/icon.svg"
