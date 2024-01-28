@@ -3,6 +3,8 @@ extends CharacterBody3D
 @export var speed = 14
 @export var min_distance = 10
 
+@onready var player = get_parent().get_node("player")
+
 var target_velocity = Vector3.ZERO
 var target_position = null
 var start_position = Translation
@@ -14,13 +16,12 @@ var minAttackSizeZ = -8 # lol
 var maxAttackSizeZ = 8 # lol
 
 func _ready():
-	print(findAttackRandom())
+	print(player)
 
 func findAttackRandom() -> Vector3:
 	var x = randf_range(minAttackSizeX, maxAttackSizeX)
 	var z = randf_range(minAttackSizeZ, maxAttackSizeZ)
 	return Vector3(x, 0, z)
-
 
 func lookAndLerp(target_position, speed, delta):
 	var direction = (target_position - global_transform.origin).normalized()
@@ -45,6 +46,18 @@ func slowdown(delta):
 	# Reduce the velocity to zero
 	velocity.x = lerp(velocity.x, 0.0, delta * 5) # magic number :)
 	velocity.z = lerp(velocity.z, 0.0, delta * 5)
+
+	# Calculate direction to player
+	var direction_to_player = (player.global_transform.origin - global_transform.origin).normalized()
+
+	# Calculate the target rotation angle
+	var target_angle = atan2(direction_to_player.x, direction_to_player.z)
+
+	# Smoothly rotate the object to face the player
+	var current_angle = self.rotation.y
+	var new_angle = lerp(current_angle, target_angle, delta * speed)
+	self.rotation.y = new_angle
+
 	move_and_slide()
 
 var timeAtLastNewTarget = 0
