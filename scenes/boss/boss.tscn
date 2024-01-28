@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cs4wav8lh44bu"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_cae7m"]
-[ext_resource type="Texture2D" path="res://sprites/boss_placeholder.png" id="1_vgilx"]
+[ext_resource type="Texture2D" uid="uid://l3dq4xchlklx" path="res://sprites/boss_placeholder.png" id="1_vgilx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i035s"]
 

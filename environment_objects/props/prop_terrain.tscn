@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://vpeeos3uri2w"]
+[gd_scene load_steps=3 format=3 uid="uid://1ssx80es1stl"]
 
 [ext_resource type="PackedScene" uid="uid://d3cyaj3aopekc" path="res://assets/mesh/terrain.glb" id="1_jepfn"]
 
@@ -9,8 +9,9 @@ data = PackedVector3Array(-8.3237, 3.7953, -8.2997, -12.4834, 7.1924, -16.7414, 
 
 [node name="terrain" parent="." instance=ExtResource("1_jepfn")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="world_collision" type="StaticBody3D" parent="."]
+unique_name_in_owner = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world_collision"]
 transform = Transform3D(7.5, 0, 0, 0, 7.5, 0, 0, 0, 7.5, 0, -0.892803, 0)
 shape = SubResource("ConcavePolygonShape3D_0rmuh")
