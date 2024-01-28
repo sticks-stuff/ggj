@@ -22,6 +22,9 @@ transform = Transform3D(1.61233, 0, 0, 0, 1, 0, 0, 0, 1.74602, 0, 0, 0)
 transform = Transform3D(1.99585, 0.128821, 0, -0.128821, 1.99585, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("SphereShape3D_5iyf8")
 
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(4.16416, 0, 0, 0, 1, 0, 0, 0, 4.49641, 0, 0, 0)
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
