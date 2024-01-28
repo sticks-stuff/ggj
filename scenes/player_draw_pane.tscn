@@ -116,7 +116,7 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Colour picker"
-color = Color(0.788235, 0.333333, 0.694118, 1)
+color = Color(0.960784, 0.898039, 1, 1)
 
 [node name="Border" type="NinePatchRect" parent="."]
 layout_mode = 1
