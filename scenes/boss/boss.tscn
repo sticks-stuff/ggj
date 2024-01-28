@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs4wav8lh44bu"]
+[gd_scene load_steps=5 format=3 uid="uid://cs4wav8lh44bu"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_cae7m"]
 [ext_resource type="Texture2D" uid="uid://l3dq4xchlklx" path="res://sprites/boss_placeholder.png" id="1_vgilx"]
+[ext_resource type="PackedScene" uid="uid://c4ysd4c1e47rn" path="res://scenes/boss/attack_1.tscn" id="2_75nkf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i035s"]
 
 [node name="BossBody" type="CharacterBody3D"]
 script = ExtResource("1_cae7m")
+attacks = Array[PackedScene]([ExtResource("2_75nkf")])
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 unique_name_in_owner = true

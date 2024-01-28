@@ -3,6 +3,7 @@ extends CharacterBody3D
 @export var speed = 14
 @export var min_distance = 10
 @export var HUD: Control
+@export var attacks: Array[PackedScene] = []
 
 @onready var player = get_parent().get_node("player")
 
@@ -72,7 +73,12 @@ var timeAtLastNewTarget = 0
 var timeAtReach = null
 var hasFired = false
 
-var attack_1 = preload("res://scenes/boss/attack_1.tscn")
+#var attack_1 = preload("res://scenes/boss/attack_1.tscn")
+
+func _selectRandomAttack() -> PackedScene:
+	var index = randi_range(0, attacks.size() - 1)
+	var path: String = attacks[index].resource_path
+	return load(path)
 
 func _physics_process(delta):
 	var curSpeed = speed
@@ -93,7 +99,7 @@ func _physics_process(delta):
 			timeAtReach = Time.get_ticks_msec()
 		if hasFired == false and Time.get_ticks_msec() - timeAtReach > 1000:
 			print("Firing")
-			var attack_instance = attack_1.instantiate()
+			var attack_instance = _selectRandomAttack().instantiate()
 			attack_instance.position = self.global_transform.origin
 			attack_instance.rotation = self.rotation
 			get_parent().add_child(attack_instance)
