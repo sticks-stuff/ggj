@@ -48,6 +48,7 @@ func slowdown(delta):
 	move_and_slide()
 
 var timeAtLastNewTarget = 0
+var timeAtReach = null
 var hasFired = false
 
 var attack_1 = preload("res://scenes/boss/attack_1.tscn")
@@ -66,14 +67,19 @@ func _physics_process(delta):
 		lookAndLerp(target_position, curSpeed, delta)
 	else:
 		slowdown(delta)
-		# print("Reached: ", target_position)
-		if hasFired == false:
+		print("Reached: ", target_position)
+		if timeAtReach == null:
+			timeAtReach = Time.get_ticks_msec()
+		if hasFired == false and Time.get_ticks_msec() - timeAtReach > 1000:
 			print("Firing")
 			var attack_instance = attack_1.instantiate()
+			attack_instance.position = self.global_transform.origin
+			attack_instance.rotation = self.rotation
 			get_parent().add_child(attack_instance)
 			hasFired = true
 		target_velocity = Vector3.ZERO
 		# print("Time since last new target: ", Time.get_ticks_msec() - timeAtLastNewTarget)
-		if Time.get_ticks_msec() - timeAtLastNewTarget > 10000: # takes about 4000ms to break after reaching target
+		if Time.get_ticks_msec() - timeAtLastNewTarget > 5000: # takes about 4000ms to break after reaching target
 			target_position = null
 			hasFired = false
+			timeAtReach = null
