@@ -20,3 +20,7 @@ func _on_area_3d_area_entered(area):
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
 	queue_free()
+
+func _on_area_3d_body_entered(body):
+	if body.name != "world_collision":
+		queue_free()

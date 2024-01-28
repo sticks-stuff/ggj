@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://ba5besi6d37jq"]
 
 [ext_resource type="PackedScene" uid="uid://l8iarrs61s16" path="res://environment_objects/props/prop_barrel.tscn" id="1_ge7sn"]
-[ext_resource type="PackedScene" uid="uid://bfl1hows4blsy" path="res://environment_objects/props/prop_rock.tscn" id="2_e8e5q"]
-[ext_resource type="PackedScene" uid="uid://wvumi5arekx4" path="res://environment_objects/props/prop_crate.tscn" id="3_ymoye"]
-[ext_resource type="PackedScene" uid="uid://c8wgii6xolyfx" path="res://environment_objects/props/prop_tree.tscn" id="4_wxnv3"]
-[ext_resource type="PackedScene" uid="uid://vpeeos3uri2w" path="res://environment_objects/props/prop_terrain.tscn" id="5_ix8af"]
+[ext_resource type="PackedScene" path="res://environment_objects/props/prop_rock.tscn" id="2_e8e5q"]
+[ext_resource type="PackedScene" path="res://environment_objects/props/prop_crate.tscn" id="3_ymoye"]
+[ext_resource type="PackedScene" uid="uid://clo60p7lhdxc4" path="res://environment_objects/props/prop_tree.tscn" id="4_wxnv3"]
+[ext_resource type="PackedScene" uid="uid://1ssx80es1stl" path="res://environment_objects/props/prop_terrain.tscn" id="5_ix8af"]
 
 [node name="EnvironmentNode" type="Node3D"]
 
