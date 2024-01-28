@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @export var speed = 14
 @export var min_distance = 10
+@export var HUD: Control
 
 @onready var player = get_parent().get_node("player")
 
@@ -23,6 +24,7 @@ var maxAttackSizeZ = 8 # lol
 
 func _ready():
 	sprite3D.texture = ImageTexture.create_from_image(Image.load_from_file(image_path))
+	HUD.update_boss_hp(HEALTH)
 
 func findAttackRandom() -> Vector3:
 	var x = randf_range(minAttackSizeX, maxAttackSizeX)
@@ -107,4 +109,5 @@ func _physics_process(delta):
 func _on_area_3d_area_entered(area):
 	if area.is_in_group("player_bullet"):
 		HEALTH -= 1
+		HUD.update_boss_hp(HEALTH)
 		print("boss hit! health: ", HEALTH)
