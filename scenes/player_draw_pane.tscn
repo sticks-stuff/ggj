@@ -176,7 +176,7 @@ layout_mode = 1
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="UndoButton" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
