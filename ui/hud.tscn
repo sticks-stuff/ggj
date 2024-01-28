@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bodxjehc5kt8l"]
+[gd_scene load_steps=6 format=3 uid="uid://bodxjehc5kt8l"]
 
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_0tpmo"]
+[ext_resource type="Texture2D" uid="uid://cnxlhwqosx6gb" path="res://ui_WhiteSquare.png" id="2_oa36p"]
+[ext_resource type="Texture2D" uid="uid://c2fgwrb7pyjp8" path="res://sprites/ui_innershadow.png" id="2_vn5l6"]
+[ext_resource type="FontFile" uid="uid://dquaatdvcdp6o" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="3_nm686"]
+[ext_resource type="PackedScene" uid="uid://dapqkgg0f682p" path="res://ui/button_standard.tscn" id="4_0yu2s"]
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("healthbar")]
+[node name="HUD" type="Control" node_paths=PackedStringArray("healthbar", "boss_healthbar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,10 +14,123 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0tpmo")
-healthbar = NodePath("HealthBar")
+healthbar = NodePath("PlayerHealthBar")
+boss_healthbar = NodePath("BossHealthBar")
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="PlayerHealthBar" type="ProgressBar" parent="."]
 layout_mode = 0
 offset_right = 382.0
 offset_bottom = 63.0
 max_value = 3.0
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 240.0
+offset_top = -133.0
+offset_right = -240.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_oa36p")
+texture_progress = ExtResource("2_oa36p")
+tint_progress = Color(0.490196, 0.180392, 0.180392, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BossHealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -720.0
+offset_top = -78.5
+offset_right = -24.0
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("3_nm686")
+theme_override_font_sizes/normal_font_size = 40
+text = "Boss"
+fit_content = true
+
+[node name="DeathScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -160.0
+offset_right = 160.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.203922, 0.137255, 0.137255, 1)
+
+[node name="Border2" type="NinePatchRect" parent="DeathScreen"]
+modulate = Color(1, 1, 1, 0.239216)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 0.5)
+texture = ExtResource("2_vn5l6")
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -339.0
+offset_top = -265.0
+offset_right = 370.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("3_nm686")
+theme_override_font_sizes/normal_font_size = 240
+text = "DEATH"
+fit_content = true
+
+[node name="NextButton" parent="DeathScreen" instance=ExtResource("4_0yu2s")]
+layout_mode = 1
+offset_left = -150.0
+offset_top = 126.0
+offset_right = 138.0
+offset_bottom = 234.0
+
+[node name="RichTextLabel2" parent="DeathScreen/NextButton" index="0"]
+offset_left = 36.0
+offset_right = -40.0
+text = " Play Again"
+
+[editable path="DeathScreen/NextButton"]
