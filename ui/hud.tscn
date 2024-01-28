@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bodxjehc5kt8l"]
+
+[ext_resource type="Script" path="res://ui/hud.gd" id="1_0tpmo"]
+
+[node name="HUD" type="Control" node_paths=PackedStringArray("healthbar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0tpmo")
+healthbar = NodePath("HealthBar")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 382.0
+offset_bottom = 63.0
+max_value = 3.0

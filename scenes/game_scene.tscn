@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://mdqhu3ye45uf"]
+[gd_scene load_steps=6 format=3 uid="uid://mdqhu3ye45uf"]
 
 [ext_resource type="PackedScene" uid="uid://bkjch3s5fkght" path="res://scenes/player.tscn" id="1_4jftv"]
 [ext_resource type="PackedScene" uid="uid://ba5besi6d37jq" path="res://environment_objects/environment_node.tscn" id="3_l67jm"]
 [ext_resource type="PackedScene" uid="uid://cs4wav8lh44bu" path="res://scenes/boss/boss.tscn" id="3_n1xjb"]
+[ext_resource type="PackedScene" uid="uid://bodxjehc5kt8l" path="res://ui/hud.tscn" id="4_w8y13"]
 
 [sub_resource type="Environment" id="Environment_f5yaj"]
 background_mode = 1
@@ -11,8 +12,9 @@ tonemap_exposure = 0.35
 
 [node name="Node3D" type="Node3D"]
 
-[node name="player" parent="." instance=ExtResource("1_4jftv")]
+[node name="player" parent="." node_paths=PackedStringArray("HUD") instance=ExtResource("1_4jftv")]
 unique_name_in_owner = true
+HUD = NodePath("../HUD")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.99999, -0.00358599, -0.0027862, 0.00447027, 0.669326, 0.742956, -0.000799358, -0.742961, 0.669335, 1.07645, 59.2832, 51.0398)
@@ -35,3 +37,5 @@ sky_mode = 1
 
 [node name="BossBody" parent="." instance=ExtResource("3_n1xjb")]
 transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="HUD" parent="." instance=ExtResource("4_w8y13")]
