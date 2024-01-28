@@ -4,10 +4,13 @@ extends CharacterBody3D
 @export var speed = 14
 @export var HUD: Control
 
+@onready var sprite3D: Sprite3D = $Sprite3D
+
 var target_velocity = Vector3.ZERO
 var direction = Vector3.ZERO
 var max_hp = 3
 var current_hp = 3
+var last_damage_time: int = 0
 
 func _ready():
 	HUD.update_player_hp(current_hp)
@@ -55,8 +58,14 @@ func _on_area_3d_area_entered(area):
 		damage(1)
 		
 func damage(amount):
+	var current_time = Time.get_unix_time_from_system()
+	if current_time - last_damage_time < 0.5:
+		return
+	last_damage_time = current_time
+	
 	current_hp -= amount
 	print("player hit! health: ", current_hp)
 	HUD.update_player_hp(current_hp)
 	if current_hp <= 0:
 		print("player hp reduced to 0")
+	
